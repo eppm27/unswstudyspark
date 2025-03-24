@@ -1,56 +1,62 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, ViewStyle } from 'react-native';
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import Feather from '@expo/vector-icons/Feather';
+
+const getTabBarStyle = (colorScheme: 'light' | 'dark' | null | undefined) => {
+  return {
+    tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+    tabBarButton: HapticTab,
+    tabBarBackground: TabBarBackground,
+    tabBarStyle: Platform.select({
+      ios: {
+        position: 'absolute' as 'absolute', // iOS blur effect
+      },
+      default: {},
+    }) as ViewStyle,
+  };
+};
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+    <Tabs screenOptions={getTabBarStyle(colorScheme)}>
       <Tabs.Screen
         name="home"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="chat"
-        options={{
-          title: 'Chat',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
+          tabBarIcon: ({ color }) => <Feather name="home" size={24} color={color} />,
+          tabBarAccessibilityLabel: 'Home tab',
         }}
       />
       <Tabs.Screen
         name="matches"
         options={{
           title: 'Matches',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="checkmark.circle.fill" color={color} />,
+          tabBarIcon: ({ color }) => <Feather name="heart" size={24} color={color} />,
+          tabBarAccessibilityLabel: 'Likes tab',
+        }}
+      />
+      <Tabs.Screen
+        name="chat"
+        options={{
+          title: 'Chat',
+          tabBarIcon: ({ color }) => <Feather name="message-circle" size={24} color={color} />,
+          tabBarAccessibilityLabel: 'Chat tab',
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color }) => <Feather name="user" size={24} color={color} />,
+          tabBarAccessibilityLabel: 'Profile tab',
         }}
       />
     </Tabs>

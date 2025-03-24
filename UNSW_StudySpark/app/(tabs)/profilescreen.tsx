@@ -7,10 +7,9 @@ export default function ProfileScreen() {
   return (
     <ThemedView style={styles.container}>
       <ThemedText type="title">Your Profile</ThemedText>
-      {/* Display user profile details here */}
       <ThemedText>Name: John Doe</ThemedText>
       <ThemedText>Major: Computer Science</ThemedText>
-      {/* Add other profile details and editing options */}
+      {/* Add more profile details or editing options */}
     </ThemedView>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Platform, Image } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
+    padding: 16,
   },
   stepContainer: {
     gap: 8,
@@ -37,5 +38,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: 'absolute',
+    resizeMode: 'contain', // Ensure proper resizing for the logo
   },
 });
