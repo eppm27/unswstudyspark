@@ -2,7 +2,6 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform, ViewStyle } from 'react-native';
 import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -28,7 +27,7 @@ export default function TabLayout() {
   return (
     <Tabs screenOptions={getTabBarStyle(colorScheme)}>
       <Tabs.Screen
-        name="home"
+        name="HomeScreen"
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => <Feather name="home" size={24} color={color} />,
@@ -36,15 +35,15 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="matches"
+        name="LikesScreen"
         options={{
-          title: 'Matches',
+          title: 'Likes',
           tabBarIcon: ({ color }) => <Feather name="heart" size={24} color={color} />,
           tabBarAccessibilityLabel: 'Likes tab',
         }}
       />
       <Tabs.Screen
-        name="chat"
+        name="ChatScreen"
         options={{
           title: 'Chat',
           tabBarIcon: ({ color }) => <Feather name="message-circle" size={24} color={color} />,
@@ -52,7 +51,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="ProfileScreen"
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => <Feather name="user" size={24} color={color} />,
